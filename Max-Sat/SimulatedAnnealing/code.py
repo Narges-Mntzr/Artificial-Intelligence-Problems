@@ -59,20 +59,23 @@ def next_temperature(i):
     return (T0-TF)/(np.cosh(10*i/MAX_ITERATIONS)) + TF
 
 def readFile():
-    with open(sampleFile, 'r') as file:
-        all_lines = file.readlines()
-    global varCnt
-    varCnt,cluasesCnt = list(map(int,all_lines[0].split()))
-    all_lines = all_lines[1:]
-    
-    for line in all_lines:
-        clause = line.split()
-
-        newClause=[]
-        for num in clause[:-1]:
-            newClause.append(to_tuple(num))
+    try:
+        with open(sampleFile, 'r') as file:
+            all_lines = file.readlines()
+        global varCnt
+        varCnt,cluasesCnt = list(map(int,all_lines[0].split()))
+        all_lines = all_lines[1:]
         
-        clauses.append(newClause)
+        for line in all_lines:
+            clause = line.split()
+
+            newClause=[]
+            for num in clause[:-1]:
+                newClause.append(to_tuple(num))
+            
+            clauses.append(newClause)
+    except FileNotFoundError:
+        exit("Input file not found.")
 
 def simmulated_annealing(initial):
     solution = initial
