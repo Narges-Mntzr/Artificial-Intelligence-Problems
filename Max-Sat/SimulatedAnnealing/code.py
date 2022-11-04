@@ -6,9 +6,6 @@
 from random import choice, random
 import numpy as np
 import matplotlib.pyplot as plt
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# import pandas as pd
 
 sampleFile = "Max-Sat/Max-SAT sample/Max-Sat_20_80.txt"
 
@@ -17,10 +14,9 @@ clauses = []
 varCnt = 0
 
 # Tempreture Variables
-t0 = 5
-tf = 0.001
-max_iterations = 250000
-initial_solutions_cnt = 2
+T0 = 5
+TF = 0.001
+MAX_ITERATIONS = 250000
 
 def annot_max(x,y, ax=None):
     xmax = x[np.argmax(y)]
@@ -60,7 +56,7 @@ def initial_solution():
     return [choice([True, False]) for _ in range(varCnt)]
 
 def next_temperature(i):
-    return (t0-tf)/(np.cosh(10*i/max_iterations)) + tf
+    return (T0-TF)/(np.cosh(10*i/MAX_ITERATIONS)) + TF
 
 def readFile():
     with open(sampleFile, 'r') as file:
@@ -81,11 +77,11 @@ def readFile():
 def simmulated_annealing(initial):
     solution = initial
     score = evaluate_all(clauses, solution)
-    temperature = t0
+    temperature = T0
     iterations = 0
     scores = []
 
-    while iterations < max_iterations:
+    while iterations < MAX_ITERATIONS:
         new_solution = disturb(solution)
         new_score = evaluate_all(clauses, new_solution)
         delta = score - new_score  # Equivalent to E(new_solution) - E(solution)
@@ -102,8 +98,6 @@ def simmulated_annealing(initial):
 def to_tuple(n_str):
     n = int(n_str)
     return (abs(n)-1, n >= 0)    
-
-
 
 if __name__ == "__main__":
     readFile()
