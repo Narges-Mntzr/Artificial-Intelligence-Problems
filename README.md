@@ -10,7 +10,7 @@ Solving problem MAX-SAT with the help of "simulated annealing" algorithm.
 This example has 80 clauses that this algorithm was able to find a way to satisfy all of them.
 <br /><br />
 
-## SUDOKU
+## SUDOKU (Genetic algorithm)
 Solving sudoku with the help of "genetic" algorithm that can find the best solution for easy and medium examples less than one minute.
 ## Output:
 **Sample 1:(easy)**
@@ -41,3 +41,6 @@ This algorithm was able to find the answer in less than a minute.
 </p>
 This algorithm was able to find an answer with 85% accuracy within one minute.
 <br /><br />
+
+## SUDOKU (convert to CSP)
+Converting sudoku into a CSP problem and solving it with the help of Minizinc.
